@@ -102,7 +102,7 @@ nginx_compile:
 
 nginx_service:
   service.running:
-    - enable: True
+    - enabled: True
     - name: nginx
     - require:
       - cmd: nginx_compile
