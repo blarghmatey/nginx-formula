@@ -8,7 +8,7 @@ nginx:
     - installed
   service:
     - running
-    - enabled: True
+    - enable: True
     - require:
       - pkg: nginx
 {% else %}
@@ -102,7 +102,7 @@ nginx_compile:
 
 nginx_service:
   service.running:
-    - enabled: True
+    - enable: True
     - name: nginx
     - require:
       - cmd: nginx_compile
