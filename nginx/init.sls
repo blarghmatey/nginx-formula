@@ -7,7 +7,7 @@ nginx:
     - installed
   service:
     - running
-    - enabled: True
+    - enable: True
     - require:
       - pkg: nginx
 {% else %}
