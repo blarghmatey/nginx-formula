@@ -24,8 +24,8 @@ nginx_user:
 nginx_source:
   git.latest:
     - target: /tmp/nginx
-    - name: https://github.com/nginx/nginx
-    - rev: v{{ nginx_version }}
+    - name: http://hg.nginx.org/nginx
+    - rev: release-{{ nginx_version }}
     - require:
       - pkg: nginx_requirements
 
@@ -66,9 +66,9 @@ nginx_configure:
     - cwd: /tmp/nginx/
     - unless: nginx -v | grep {{ nginx_version }}
     - watch:
-      - git: nginx_source
+      - hg: nginx_source
     - require:
-      - git: nginx_source
+      - hg: nginx_source
 
 nginx_compile:
   cmd.wait:
