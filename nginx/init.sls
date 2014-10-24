@@ -22,7 +22,7 @@ nginx_user:
     - system: True
 
 nginx_source:
-  git.latest:
+  hg.latest:
     - target: /tmp/nginx
     - name: http://hg.nginx.org/nginx
     - rev: release-{{ nginx_version }}
