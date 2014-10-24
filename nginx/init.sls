@@ -1,6 +1,5 @@
 {% from "nginx/package_map.jinja" import nginx with context %}
-{% set nginx_version = salt['pillar.get']('nginx:version', '1.4.5') %}
-{% set pcre_version = salt['pillar.get']('nginx:pcre_version', '8.32') %}
+{% set nginx_version = salt['pillar.get']('nginx:version', '1.7.6') %}
 
 {% if salt['pillar.get']('nginx:package', False) %}
 nginx:
@@ -23,10 +22,10 @@ nginx_user:
     - system: True
 
 nginx_source:
-  hg.latest:
+  git.latest:
     - target: /tmp/nginx
-    - name: http://hg.nginx.org/nginx
-    - rev: release-{{ nginx_version }}
+    - name: https://github.com/nginx/nginx
+    - rev: v{{ nginx_version }}
     - require:
       - pkg: nginx_requirements
 

@@ -4,12 +4,11 @@ After=syslog.target network.target
 
 [Service]
 Type=forking
-PIDFile=/run/nginx.pid
-ExecStartPre=/usr/bin/nginx -t -q -g 'pid /run/nginx.pid; daemon on; master_process on;'
-ExecStart=/usr/bin/nginx -g 'pid /run/nginx.pid; daemon on; master_process on;'
-ExecReload=/usr/bin/nginx -g 'pid /run/nginx.pid; daemon on; master_process on;' -s reload
-ExecStop=/usr/bin/nginx -g 'pid /run/nginx.pid;' -s quit
+PIDFile=/var/run/nginx.pid
+ExecStartPre=/usr/bin/nginx -t -q -g 'pid /var/run/nginx.pid; daemon on; master_process on;'
+ExecStart=/usr/bin/nginx -g 'pid /var/run/nginx.pid; daemon on; master_process on;'
+ExecReload=/usr/bin/nginx -g 'pid /var/run/nginx.pid; daemon on; master_process on;' -s reload
+ExecStop=/usr/bin/nginx -g 'pid /var/run/nginx.pid;' -s quit
 
 [Install]
 WantedBy=multi-user.target
-
