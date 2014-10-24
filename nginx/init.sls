@@ -66,9 +66,9 @@ nginx_configure:
     - cwd: /tmp/nginx/
     - unless: nginx -v | grep {{ nginx_version }}
     - watch:
-      - hg: nginx_source
+      - git: nginx_source
     - require:
-      - hg: nginx_source
+      - git: nginx_source
 
 nginx_compile:
   cmd.wait:
