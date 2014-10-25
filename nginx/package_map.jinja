@@ -1,7 +1,7 @@
 {% set nginx = salt['grains.filter_by']({
     'Debian': {
         'pkgs': [
-            'mercurial',
+            'git',
             'build-essential',
             'libssl-dev',
             'libpcre3-dev',
@@ -11,7 +11,7 @@
     },
     'RedHat': {
         'pkgs': [
-            'mercurial',
+            'git',
             'gcc',
             'make',
             'openssl-devel',
@@ -22,7 +22,7 @@
     },
     'Arch': {
         'pkgs': [
-            'mercurial',
+            'git',
             'gcc',
             'make',
             'geoip',

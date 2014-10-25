@@ -22,10 +22,10 @@ nginx_user:
     - system: True
 
 nginx_source:
-  hg.latest:
+  git.latest:
     - target: /tmp/nginx
-    - name: http://hg.nginx.org/nginx
-    - rev: release-{{ nginx_version }}
+    - name: https://github.com/nginx/nginx
+    - rev: v{{ nginx_version }}
     - require:
       - pkg: nginx_requirements
 
@@ -49,7 +49,7 @@ nginx_source:
 
 nginx_configure:
   cmd.wait:
-    - name: auto/configure --conf-path=/etc/nginx/nginx.conf
+    - name: ./configure --conf-path=/etc/nginx/nginx.conf
           --sbin-path=/usr/sbin/nginx
           --pid-path=/var/run/nginx.pid
           --lock-path=/var/lock/nginx.lock
@@ -66,9 +66,9 @@ nginx_configure:
     - cwd: /tmp/nginx/
     - unless: nginx -v | grep {{ nginx_version }}
     - watch:
-      - hg: nginx_source
+      - git: nginx_source
     - require:
-      - hg: nginx_source
+      - git: nginx_source
 
 nginx_compile:
   cmd.wait:
