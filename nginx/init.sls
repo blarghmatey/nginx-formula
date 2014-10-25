@@ -25,7 +25,7 @@ nginx_source:
   git.latest:
     - target: /tmp/nginx
     - name: https://github.com/nginx/nginx
-    - rev: release-{{ nginx_version }}
+    - rev: v{{ nginx_version }}
     - require:
       - pkg: nginx_requirements
 
@@ -101,7 +101,7 @@ nginx_compile:
 
 nginx_service:
   service.running:
-    - enabled: True
+    - enable: True
     - name: nginx
     - require:
       - cmd: nginx_compile
